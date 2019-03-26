@@ -13,8 +13,7 @@ class Images extends Component {
 
   componentDidMount() {
     const { count, start } = this.state;
-    this.setState({ start: this.state.start + count });
-    console.log("componentDidMount:" + count, start);
+    this.setState({ start: 2 });
     axios
       .get(`/api/photos?count=${count}&start=${start}`)
       .then(res => this.setState({ images: res.data }));
@@ -22,8 +21,8 @@ class Images extends Component {
 
   loadMore = () => {
     const { count, start } = this.state;
-    this.setState({ start: this.state.start + count });
-    console.log("loadMore:" + count, start);
+    this.setState({ start: start + 1 });
+    console.log(`lm: ${count}, ${start}`);
     axios
       .get(`/api/photos?count=${count}&start=${start}`)
       .then(res =>
@@ -38,7 +37,12 @@ class Images extends Component {
           dataLength={this.state.images.length}
           next={this.loadMore}
           hasMore={true}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
+              alt=""
+            />
+          }
         >
           <div className="image-grid">
             {this.state.images.map(image => (
