@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "node index",
     "server": "nodemon server --ignore client",
-    "client": "yarn start --prefix ../",
+    "client": "yarn --cwd ../photo-gallery/ start",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "author": "",
