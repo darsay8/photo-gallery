@@ -14,34 +14,32 @@
 /*==========================================*/
 
 .title {
-    font-family: 'Playfair Display';
+  font-family: "Playfair Display";
 }
 
 .subtitle {
-    font-family: 'Great Vibes';
+  font-family: "Great Vibes";
 }
 
 .container {
-    margin-top: 50px;
-    text-align: center;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .image-grid {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: minmax(50px, auto);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(50px, auto);
 }
 
 .image-grid .image-item:nth-child(5n) {
-    grid-column-end: span 2;
+  grid-column-end: span 2;
 }
 
 .image-grid img {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-
