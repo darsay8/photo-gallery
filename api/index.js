@@ -1,16 +1,17 @@
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> IMPORTS
-global.fetch = require("node-fetch");
-const config = require("universal-config");
-const Unsplash = require("unsplash-js").default;
-const toJson = require("unsplash-js").toJson;
-const express = require("express");
-const cors = require("cors");
+//global.fetch = require('node-fetch');
+const fetch = require('node-fetch');
+const config = require('universal-config');
+const Unsplash = require('unsplash-js').createApi;
+// import { createApi } from 'unsplash-js';
+const toJson = require('unsplash-js').toJson;
+const express = require('express');
+const cors = require('cors');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UNSPLASH API
 const unsplash = new Unsplash({
-  applicationId: config.get("APPLICATION_ID"),
-  secret: config.get("SECRET"),
-  callbackUrl: config.get("CALLBACK_URL"),
+  accessKey: config.get('ACCESS'),
+  fetch: fetch,
 });
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EXPRESS
@@ -20,20 +21,22 @@ const app = express();
 app.use(cors());
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET PHOTOS
-app.get("/api/photos/", (req, res) => {
+app.get('/api/photos/', (req, res) => {
+  console.log(req.query.per_page);
   unsplash.photos
-    .listPhotos(req.query.start, req.query.count)
+    .list({ page: req.query.page, per_page: req.query.per_page })
     .then(toJson)
-    .then((photos) => {
-      return res.json(photos);
+    .then(photos => {
+      //console.log(photos.response.results);
+      return res.json(photos.response.results);
     });
 });
 
-app.get("/api/search/photos/", (req, res) => {
+app.get('/api/search/photos/', (req, res) => {
   unsplash.photos
     .searchPhotos(req.query.searchField)
     .then(toJson)
-    .then((photos) => {
+    .then(photos => {
       return res.json(photos);
     });
 });
