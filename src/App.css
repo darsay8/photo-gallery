@@ -13,17 +13,26 @@
 
 /*==========================================*/
 
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1em;
+}
+
 .title {
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
+  margin-right: 0.5em;
 }
 
 .subtitle {
-  font-family: "Great Vibes";
+  font-family: 'Great Vibes';
 }
 
 .container {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   text-align: center;
+  border: 1px solid red;
 }
 
 .image-grid {
@@ -42,4 +51,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+#loader {
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: 4em auto 1em;
+  display: block;
+  vertical-align: top;
+}
+
+.search {
+  border-radius: 100px;
+  padding: 0.8em;
+  border: 2px solid lightgrey;
 }

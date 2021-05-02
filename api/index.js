@@ -22,16 +22,19 @@ app.use(cors());
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET PHOTOS
 app.get('/api/photos/', (req, res) => {
-  console.log(req.query.per_page);
   unsplash.photos
     .list({ page: req.query.page, per_page: req.query.per_page })
     .then(toJson)
     .then(photos => {
-      //console.log(photos.response.results);
       return res.json(photos.response.results);
+    })
+    .catch(err => {
+      console.log('Error: ', err.message);
+      return res.sendStatus(501);
     });
 });
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH PHOTOS
 app.get('/api/search/photos/', (req, res) => {
   unsplash.photos
     .searchPhotos(req.query.searchField)
