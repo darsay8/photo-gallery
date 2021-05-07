@@ -19,7 +19,8 @@
 .env.test.local
 .env.production.local
 .idea
-/api/config
+/api/config/
+/api/test-api.paw
 
 npm-debug.log*
 yarn-debug.log*

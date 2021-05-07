@@ -7,7 +7,7 @@
     "start": "node index",
     "server": "nodemon server --ignore client",
     "client": "yarn --cwd ../photo-gallery/ start",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn run server\" \"yarn run client\" -c \"bgGreen,bgBlue.bold\" -n \"server,client\""
   },
   "author": "",
   "license": "ISC",

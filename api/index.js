@@ -1,16 +1,13 @@
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> IMPORTS
-//global.fetch = require('node-fetch');
 const fetch = require('node-fetch');
 const config = require('universal-config');
 const Unsplash = require('unsplash-js').createApi;
-// import { createApi } from 'unsplash-js';
-const toJson = require('unsplash-js').toJson;
 const express = require('express');
 const cors = require('cors');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UNSPLASH API
 const unsplash = new Unsplash({
-  accessKey: config.get('ACCESS'),
+  accessKey: config.get('UNSPLASH_ACCESS_KEY'),
   fetch: fetch,
 });
 
@@ -22,25 +19,34 @@ app.use(cors());
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET PHOTOS
 app.get('/api/photos/', (req, res) => {
+  const q = req.query;
   unsplash.photos
-    .list({ page: req.query.page, per_page: req.query.per_page })
-    .then(toJson)
+    .list({ page: q.page, perPage: q.perPage })
     .then(photos => {
       return res.json(photos.response.results);
     })
     .catch(err => {
-      console.log('Error: ', err.message);
-      return res.sendStatus(501);
+      console.error('Error: ', err.message);
+      //return res.sendStatus(501);
     });
 });
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH PHOTOS
 app.get('/api/search/photos/', (req, res) => {
-  unsplash.photos
-    .searchPhotos(req.query.searchField)
-    .then(toJson)
+  const q = req.query;
+  unsplash.search
+    .getPhotos({
+      query: q.query,
+      page: q.page,
+      perPage: q.perPage,
+      orderBy: 'latest',
+    })
     .then(photos => {
-      return res.json(photos);
+      return res.json(photos.response.results);
+    })
+    .catch(err => {
+      console.log('Error: ', err.message);
+      //return res.sendStatus(501);
     });
 });
 
