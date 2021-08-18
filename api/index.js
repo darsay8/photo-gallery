@@ -7,7 +7,7 @@ const cors = require('cors');
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UNSPLASH API
 const unsplash = new Unsplash({
-  accessKey: config.get('UNSPLASH_ACCESS_KEY') || process.env.UNSPLASH_ACCESS_KEY,
+  accessKey: config.get('UNSPLASH_ACCESS_KEY'),
   fetch: fetch,
 });
 
