@@ -52,6 +52,4 @@ app.get('/api/search/photos/', (req, res) => {
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PORT CONFIG
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server started on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
