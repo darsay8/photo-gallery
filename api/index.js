@@ -16,6 +16,7 @@ const app = express();
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MIDDLEWARE
 app.use(cors());
+app.use(express.static('build'));
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET PHOTOS
 app.get('/api/photos/', (req, res) => {
