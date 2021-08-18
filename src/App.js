@@ -25,7 +25,6 @@ const App = () => {
         .then(res => {
           setImages(res.data);
           setPage(2);
-          setPerPage(10);
         })
         .catch(err => console.log(err));
     } else {
@@ -55,7 +54,7 @@ const App = () => {
         <Header onSearch={onSearchChange} />
         <InfiniteScroll
           dataLength={images.length}
-          next={() => fetchImages}
+          next={fetchImages}
           hasMore={true}
           loader={<Loader />}
         >
